@@ -34,7 +34,7 @@ func input_text() {
 	}
 	arr := []int{}
 	inputText := scanner.Text()
-	words := strings.Split(inputText, " ")
+	words := strings.Split(inputText, "")
 	for _, word := range words {
 		num, err := strconv.Atoi(word)
 		if err != nil {
