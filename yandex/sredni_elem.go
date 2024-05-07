@@ -1,24 +1,22 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
 	"log"
-	"os"
+	"sort"
 )
 
 func main() {
-	scanner := bufio.NewScanner(os.Stdin)
-	scanner.Scan()
-	err := scanner.Err()
-	if err != nil {
-		log.Fatal(err)
+	var arr = make([]int, 3)
+	for i := 0; i < len(arr); i++ {
+		_, err := fmt.Scan(&arr[i])
+		if err != nil {
+			log.Fatal(err)
+		}
 	}
 
-	// Получаем текст, считанный из стандартного ввода
-	inputText := scanner.Text()
+	sort.Ints(arr)
 
-	// Выводим текст на экран
-	fmt.Println(inputText)
+	fmt.Println(arr[1])
 
 }
