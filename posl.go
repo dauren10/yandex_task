@@ -2,25 +2,29 @@ package main
 
 import "fmt"
 
-func main() {
-	source := "cartwheel"
-	find := "car"
+func fuzzysearch(sub string, s string) bool {
+	subLen := len(sub)
+	sLen := len(s)
 
-	res := fuzzysearch(find, source)
-	fmt.Println(res)
+	subPtr := 0
+	sPtr := 0
+
+	for subPtr < subLen && sPtr < sLen {
+		if sub[subPtr] == s[sPtr] {
+			subPtr++
+		}
+		sPtr++
+	}
+
+	return subPtr == subLen
+
 }
 
-// fuzzysearch('car', 'cartwheel');        // true
-// fuzzysearch('cwhl', 'cartwheel');       // true
-// fuzzysearch('cwheel', 'cartwheel');     // true
-// fuzzysearch('cartwheel', 'cartwheel');  // true
-// fuzzysearch('cwheeel', 'cartwheel');    // false
-// fuzzysearch('lw', 'cartwheel');         // false
-// найти из первого аргумента что есть во втором включая порядок
-
-func fuzzysearch(find, source string) bool {
-	for i := 0; i < len(source); i++ {
-		fmt.Println(source[i])
-	}
-	return true
+func main() {
+	fmt.Println(fuzzysearch("car", "cartwheel"))       // true
+	fmt.Println(fuzzysearch("cwhl", "cartwheel"))      // true
+	fmt.Println(fuzzysearch("cwheel", "cartwheel"))    // true
+	fmt.Println(fuzzysearch("cartwheel", "cartwheel")) // true
+	fmt.Println(fuzzysearch("cwheeel", "cartwheel"))   // false
+	fmt.Println(fuzzysearch("lw", "cartwheel"))        // false
 }
